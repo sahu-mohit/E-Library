@@ -1,14 +1,19 @@
 package Controller.RestController;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+
+
+@Controller
+@RequestMapping("/rest")
 public class RESTController {
 
-    @GetMapping("/")
+    @RequestMapping("/index")
     public String gettest(){
-        System.out.println("hgjmhgj");
-        return "hg";
+      
+        return "home";
     }
 }
