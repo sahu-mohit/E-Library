@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Object getUserById(String emailid) {
         List<User>user = userRepository.findAllByEmailid(emailid);
-        if(user.size() > 1){
+        if(user.size() > 0){
             return user;
         }
         return "";
