@@ -1,8 +1,10 @@
 package com.library.RestController;
 
+import com.library.Utility.DataTypeUtility;
 import com.library.services.User.UserService;
 import com.sun.istack.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +21,8 @@ public class RESTController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> getLogin(@RequestBody @Nullable Map<String,Object> param){
-        String login = userService.getLogin((Long) param.get("userId"),(String)param.get("password"));
-        return ResponseEntity.ok("Suucessfully login");
+        Map<String, Object> login = userService.getLogin(param);
+        return new ResponseEntity(login ,HttpStatus.OK);
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)

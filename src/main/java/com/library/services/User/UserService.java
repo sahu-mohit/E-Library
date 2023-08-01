@@ -3,7 +3,7 @@ package com.library.services.User;
 import java.util.Map;
 
 public interface UserService {
-    String getLogin(Long userid, String userName);
+   public Map<String, Object> getLogin(Map<String, Object> param);
 
     String getRegistration(Map<String, Object> param);
 
