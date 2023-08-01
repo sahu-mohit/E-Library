@@ -21,4 +21,6 @@ public class User {
     private String contactno;
     private String password;
     private Boolean isAdmin;
+    private String createdon;
+    private String logindate;
 }
