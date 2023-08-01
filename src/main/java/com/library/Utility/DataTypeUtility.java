@@ -3,6 +3,8 @@ package com.library.Utility;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DataTypeUtility {
 
@@ -45,5 +47,25 @@ public class DataTypeUtility {
         }else{
             return false;
         }
+    }
+    
+    public static String getCurrentDateInIndianFormat() {
+    	Date d = new Date();
+    	return new SimpleDateFormat("dd-MM-yyyy").format(d);	
+    }
+    
+    public static String getCurrentDateTimeInIndianFormat() {
+    	Date d = new Date();
+    	return new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(d);	
+    }
+    
+    public static String getCurrentDateTimeInUSFormat() {
+    	Date d = new Date();
+    	return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);	
+    }
+    
+    public static String getCurrentDateInUSFormat() {
+    	Date d = new Date();
+    	return new SimpleDateFormat("yyyy-MM-dd").format(d);	
     }
 }
