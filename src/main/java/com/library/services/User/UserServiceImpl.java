@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(password);
         user.setContactno(contactno);
         user.setIsAdmin(false);
+        user.setCreatedon(DataTypeUtility.getCurrentDateInIndianFormat());
         userRepository.save(user);
         }catch (Exception e){
             e.printStackTrace();

@@ -22,5 +22,5 @@ public class User {
     private String password;
     private Boolean isAdmin;
     private String createdon;
-    private String logindate;
+    private String loginDateAndTime;
 }
