@@ -32,28 +32,25 @@ public class UserServiceImpl implements UserService {
     	        	data.put("message", "Please Enter Password");
     	            return data;
     	          
-    	        }
-    	       String userid = "";
+    	        }   	     
     	       String pass="";
     	        password = DataTypeUtility.getEncryption(password);
     	        List<User> user = userRepository.findAllByEmailid(mailId);
     	        if(user.size()>0) {
-    	        	userid = DataTypeUtility.stringvlue(user.get(0).getEmailid());
     	        	pass = DataTypeUtility.stringvlue(user.get(0).getPassword());	
-    	        }
-    	        if(mailId.equalsIgnoreCase(userid)) {
     	        	if(password.equalsIgnoreCase(pass)) {
-    	        	data.put("loginuserdata", user);
-    	        	} else {
-    	        		data.put("message", "Invalid Password");
-        	            return data;
-    	        		
-    	        	}
+    	        		User users = user.get(0);
+    	        		users.setLoginDateAndTime(DataTypeUtility.getCurrentDateTimeInUSFormat());
+    	        		userRepository.save(users);       	        
+        	        	} else {
+        	        		data.put("message", "Invalid Password");
+            	            return data;
+        	        		
+        	        	}
     	        } else {
     	        	data.put("message", "Invalid User Id");
-    	            return data;
-    	        
-    	        }
+    	        	return data;
+    	        }   
     	        }catch (Exception e){
     	            e.printStackTrace();
     	        }
