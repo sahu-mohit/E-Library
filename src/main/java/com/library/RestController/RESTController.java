@@ -1,6 +1,5 @@
 package com.library.RestController;
 
-import com.library.Utility.DataTypeUtility;
 import com.library.services.User.UserService;
 import com.sun.istack.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;

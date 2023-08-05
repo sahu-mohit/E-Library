@@ -1,9 +1,14 @@
 package com.library.Utility;
 
+import com.library.AllConstant.Constant;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class DataTypeUtility {
@@ -51,21 +56,59 @@ public class DataTypeUtility {
     
     public static String getCurrentDateInIndianFormat() {
     	Date d = new Date();
-    	return new SimpleDateFormat("dd-MM-yyyy").format(d);	
+    	return new SimpleDateFormat(Constant.INDIAN_DATE_FORMAT.getValue()).format(d);
     }
     
     public static String getCurrentDateTimeInIndianFormat() {
     	Date d = new Date();
-    	return new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(d);	
+    	return new SimpleDateFormat(Constant.INDIAN_DATE_FORMAT_WITH_TIME.getValue()).format(d);
     }
     
-    public static String getCurrentDateTimeInUSFormat() {
+    public static String getCurrentDateTimeInSQLFormat() {
     	Date d = new Date();
-    	return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);	
+    	return new SimpleDateFormat(Constant.SQL_FORMAT_DATE_TIME.getValue()).format(d);
+    }
+
+    public static String getCurrentDateTimeInUSFormatWithTime() {
+        Date d = new Date();
+        return new SimpleDateFormat(Constant.US_DATE_FORMAT_WITH_TIME.getValue()).format(d);
     }
     
-    public static String getCurrentDateInUSFormat() {
+    public static String getCurrentDateInSQLFormat() {
     	Date d = new Date();
-    	return new SimpleDateFormat("yyyy-MM-dd").format(d);	
+    	return new SimpleDateFormat(Constant.SQL_FORMAT_DATE.getValue()).format(d);
+    }
+
+    public static Date getCurrentDateTimeInSQLFormatOfDateType(){
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constant.SQL_FORMAT_DATE_TIME.getValue());
+        String formattedDateTime = currentDateTime.format(formatter);
+        Date date = null;
+        try {
+            date = new SimpleDateFormat(Constant.SQL_FORMAT_DATE_TIME.getValue()).parse(formattedDateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public static Date getIndianDateFormat(String d){
+        Date date = null;
+        try{
+        date = new SimpleDateFormat(Constant.INDIAN_DATE_FORMAT.getValue()).parse(d);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public static Date getSQLDateFormat(String d){
+        Date date = null;
+        try{
+            date = new SimpleDateFormat(Constant.SQL_FORMAT_DATE.getValue()).parse(d);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        return date;
     }
 }
