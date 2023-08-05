@@ -14,16 +14,16 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
-    
+
     @Override
     public Map<String, Object>getLogin(Map<String, Object>param) {
     	Map<String, Object>data = new HashMap();
     	  try{
-    	      
+
     	        String mailId = DataTypeUtility.stringvlue(param.get("userId"));
     	        String password = DataTypeUtility.stringvlue(param.get("password"));
     	        password = DataTypeUtility.getEncryption(password);
-    	   
+
     	        if(mailId.equals("")){
     	        	data.put("message", "Please Enter EmailId");
     	            return data;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     	        if(password.equals("")){
     	        	data.put("message", "Please Enter Password");
     	            return data;
-    	          
+
     	        }
     	       String userid = "";
     	       String pass="";
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     	        List<User> user = userRepository.findAllByEmailid(mailId);
     	        if(user.size()>0) {
     	        	userid = DataTypeUtility.stringvlue(user.get(0).getEmailid());
-    	        	pass = DataTypeUtility.stringvlue(user.get(0).getPassword());	
+    	        	pass = DataTypeUtility.stringvlue(user.get(0).getPassword());
     	        }
     	        if(mailId.equalsIgnoreCase(userid)) {
     	        	if(password.equalsIgnoreCase(pass)) {
@@ -47,19 +47,19 @@ public class UserServiceImpl implements UserService {
     	        	} else {
     	        		data.put("message", "Invalid Password");
         	            return data;
-    	        		
+
     	        	}
     	        } else {
     	        	data.put("message", "Invalid User Id");
     	            return data;
-    	        
+
     	        }
     	        }catch (Exception e){
     	            e.printStackTrace();
     	        }
     	  data.put("message", "success");
           return data;
-    	     
+
     }
 
     @Override
