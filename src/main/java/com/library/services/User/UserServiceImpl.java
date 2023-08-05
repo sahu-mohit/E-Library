@@ -17,41 +17,39 @@ public class UserServiceImpl implements UserService {
     
     @Override
     public Map<String, Object>getLogin(Map<String, Object>param) {
-    	Map<String, Object>data = new HashMap();
-    	  try{
-    	        String mailId = DataTypeUtility.stringvlue(param.get("emailId"));
-    	        String password = DataTypeUtility.stringvlue(param.get("password"));
+        Map<String, Object> data = new HashMap();
+        try {
+            String mailId = DataTypeUtility.stringvlue(param.get("emailId"));
+            String password = DataTypeUtility.getEncryption(DataTypeUtility.stringvlue(param.get("password")));
 
-    	        if(mailId.equals("")){
-    	        	data.put("message", "Please Enter EmailId");
-    	            return data;
-    	        }
-    	        if(password.equals("")){
-    	        	data.put("message", "Please Enter Password");
-    	            return data;
+            if (mailId.equals("")) {
+                data.put("message", "Please Enter EmailId");
+                return data;
+            }
+            if (password.equals("")) {
+                data.put("message", "Please Enter Password");
+                return data;
+            }
 
-    	        }
+            List<User> user = userRepository.findAllByEmailid(mailId);
 
-    	        List<User> user = userRepository.findAllByEmailid(mailId);
-    	        password = DataTypeUtility.getEncryption(password);
-
-    	        if(user.size()>0) {
-                    if(password.equalsIgnoreCase(DataTypeUtility.stringvlue(user.get(0).getPassword()))) {
-                        data.put("loginuserdata", user);
-    	                data.put("message", "success");
-                    } else {
-                        data.put("message", "Invalid Password");
-                        return data;
-                    }
-    	        } else {
-    	        	data.put("message", "Invalid User Id");
-    	            return data;
-    	        }
+            if (user.size() > 0) {
+                if (password.equalsIgnoreCase(DataTypeUtility.stringvlue(user.get(0).getPassword()))) {
+                    data.put("loginuserdata", user);
+                    data.put("message", "success");
+                    return data;
+                } else {
+                    data.put("message", "Invalid Password");
+                    return data;
+                }
+            } else {
+                data.put("message", "Invalid User Id");
+                return data;
+            }
     	        }catch (Exception e){
     	            e.printStackTrace();
+    	            return null;
     	        }
-          return data;
-    	     
     }
 
     @Override
