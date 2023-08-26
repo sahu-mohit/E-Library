@@ -13,8 +13,8 @@
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous">
     </script>
-    <script src="../../assests/createtable.js"></script>
-    <script src="../../assests/CommonJavaScript.js"></script>
+    <script src="../../../assests/createtable.js"></script>
+    <script src="../../../assests/common/CommonJavaScript.js"></script>
     <script>
         $(document).ready(function () {
             $("#actiondiv").hide();

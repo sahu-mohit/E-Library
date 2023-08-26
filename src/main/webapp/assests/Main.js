@@ -1,14 +1,17 @@
 function clickedButton(page_name) {
-    console.log("Button Cliked");
-    if(page_name == "/"){
+    $("#dom").html("");
+    if(page_name === "/"){
         $("#dom").append(Navbar());
+        $("#dom").append(Login())
     }
-    else if(page_name == 'login')
+    else if(page_name === 'login')
     {
-        $("#dom").html(Login())
+        $("#dom").append(Navbar());
+        $("#dom").append(Login())
     }
-    else if(page_name == 'registration')
+    else if(page_name === 'registration')
     {
-        $("#dom").html(Registration())
+        $("#dom").append(Navbar());
+        $("#dom").append(Registration())
     }
 }

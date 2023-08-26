@@ -7,7 +7,6 @@ function Navbar() {
         "    }'>\n" +
         "        <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n" +
         "          <div class=\"container-fluid\">\n" +
-        "            <img src=\"./assests/images/mklogo.png\" alt=\"MKLogo\"></img>\n" +
         "            <a class=\"navbar-brand\" href=\"/\">\n" +
         "              Meri Kitab\n" +
         "            </a>\n" +

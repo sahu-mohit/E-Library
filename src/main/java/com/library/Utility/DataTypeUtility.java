@@ -31,7 +31,12 @@ public class DataTypeUtility {
     }
 
     public static String stringvlue(Object value) {
-        if ((value.equals("") || value == "" || value == null || value.toString().equalsIgnoreCase("undefined") || value.toString().equalsIgnoreCase("null"))) {
+        if (value != null)
+            {
+                if((value.equals("") || value == "" || value.toString().equalsIgnoreCase("undefined") || value.toString().equalsIgnoreCase("null"))){
+                    return "";
+                }
+            }else{
             return "";
         }
         return (value.toString()).trim();

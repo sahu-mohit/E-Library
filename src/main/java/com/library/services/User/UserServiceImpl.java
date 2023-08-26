@@ -20,7 +20,8 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> data = new HashMap();
         try {
             String mailId = DataTypeUtility.stringvlue(param.get("emailId"));
-            String password = DataTypeUtility.getEncryption(DataTypeUtility.stringvlue(param.get("password")));
+            String password = DataTypeUtility.stringvlue(param.get("password"));
+//            String password = DataTypeUtility.getEncryption(DataTypeUtility.stringvlue(param.get("password")));
 
             if (mailId.equals("")) {
                 data.put("message", "Please Enter EmailId");
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
             List<User> user = userRepository.findAllByEmailid(mailId);
 
             if (user.size() > 0) {
-                if (password.equalsIgnoreCase(DataTypeUtility.stringvlue(user.get(0).getPassword()))) {
+                if (DataTypeUtility.getEncryption(password).equalsIgnoreCase(DataTypeUtility.stringvlue(user.get(0).getPassword()))) {
                     data.put("loginuserdata", user);
                     data.put("message", "success");
                     return data;

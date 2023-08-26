@@ -34,7 +34,7 @@ function Registration() {
         '                    </form>\n' +
         '                </div>\n' +
         '                <div class="card-footer text-center">\n' +
-        '                    Already have an account? <a href="#">Login here</a>\n' +
+        '                    Already have an account? <a onclick="clickedButton(\'login\')">Login here</a>\n' +
         '                </div>\n' +
         '            </div>\n' +
         '        </div>\n' +
